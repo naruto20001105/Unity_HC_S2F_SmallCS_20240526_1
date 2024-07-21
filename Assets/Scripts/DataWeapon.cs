@@ -9,6 +9,8 @@ namespace Henry
     [CreateAssetMenu(menuName = "Henry/Weapon")]
     public class Dataweapon : ScriptableObject
     {
+        [Header("武器名稱")]
+        public string weaponName;
         [Header("彈匣裝彈量"), Range(0, 60)]
         public int magazineBulletCount;
         [Header("彈匣價格"), Range(0, 1000)]
@@ -21,9 +23,11 @@ namespace Henry
         public float bulletDamage;
         [Header("武器後座力"), Range(0, 2)]
         public float bulletRecoil;
-        [Header("武器冷卻"), Range(0, 1)]
+        [Header("子彈冷卻"), Range(0, 1)]
         public float bulletCD;
-        [Header("換彈冷卻"), Range(0, 2)]
+        [Header("彈匣冷卻"), Range(0, 2)]
         public float magazineCD;
+        [Header("子彈預製物")]
+        public GameObject bulletPrefab;
     }
 }

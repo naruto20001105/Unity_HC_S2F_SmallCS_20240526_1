@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 939a91d37160ca641b9b32693980d344, type: 3}
   m_Name: "\u6B66\u5668\u8CC7\u6599_\u624B\u69CD"
   m_EditorClassIdentifier: 
-  magazineBulletCount: 0
+  weaponName: "\u624B\u69CD"
+  magazineBulletCount: 12
   magazinePrice: 0
-  bulletSpeed: 0
+  bulletSpeed: 500
   bulletLift: 0
   bulletDamage: 0
   bulletRecoil: 0
   bulletCD: 0
   magazineCD: 0
+  bulletPrefab: {fileID: 2915995427668037428, guid: 9c188be5295b55942b1d31224ebd5b24, type: 3}

@@ -7,13 +7,11 @@ namespace Henry
     /// </summary>
     public class ControlSystem : MonoBehaviour
     {
-        // SerializeField 序列化，將數字顯示在面板
-        // Header 標題，在變數上顯示文字
-        // Range(最小，最大) 設定變數範圍限制
+        #region 資料
         [SerializeField, Header("移動速度"), Range(0, 10)]
-        private float movespeed  = 3.5f;
+        private float movespeed = 3.5f;
         [SerializeField, Header("爬梯速度"), Range(0, 10)]
-        private float ladderspeed  = 3.5f;
+        private float ladderspeed = 3.5f;
         // Color(紅，綠，藍，透明度) 值 :0 ~ 1 (百分比)
         [SerializeField, Header("爬梯區域顏色")]
         private Color ladderColor = new Color(1, 0.3f, 0.3f, 0.7f);
@@ -27,7 +25,9 @@ namespace Henry
         private Rigidbody2D rig;
         private Animator ani;
         private string parMove = "移動數值";
+        #endregion
 
+        #region 事件
         // ODG 繪製圖示事件，在編輯器內繪製圖提示圖示
         private void OnDrawGizmos()
         {
@@ -35,7 +35,7 @@ namespace Henry
             Gizmos.color = ladderColor;
             //決定圖示形狀(座標，尺寸)
             //transform.position 此物件的座標
-            Gizmos.DrawCube(transform.position  +  ladderOffset, ladderSize);
+            Gizmos.DrawCube(transform.position + ladderOffset, ladderSize);
         }
 
         private void Awake()
@@ -44,14 +44,17 @@ namespace Henry
             rig = GetComponent<Rigidbody2D>();
             ani = GetComponent<Animator>();
         }
+       
         private void Update()
         {
             // 呼叫自訂方法移動
             Move();
             Ladder();
-        }
-        
-        private void Move() 
+        } 
+        #endregion
+
+        #region 方法
+        private void Move()
         {
             // 獲得玩家的水平按鍵：A、D與左右
             // 玩家按下左 -1，右 +1，沒按 0
@@ -68,7 +71,7 @@ namespace Henry
         private void Ladder()
         {
             // 2D 物理.覆蓋立體物(座標，尺寸，角度，圖層)
-            Collider2D hit = Physics2D.OverlapBox(transform.position  +  ladderOffset,
+            Collider2D hit = Physics2D.OverlapBox(transform.position + ladderOffset,
                 ladderSize, 0, laddersLayer);
 
             // 如果 hit 是空的 就不執行下面的程式 (跳出)
@@ -78,6 +81,7 @@ namespace Henry
             if (Mathf.Abs(h) < 0.2f) return;
 
             rig.velocity = new Vector2(rig.velocity.x, ladderspeed);
-         }
+        } 
+        #endregion
     }
 }
