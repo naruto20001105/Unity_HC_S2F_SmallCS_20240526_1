@@ -21,7 +21,7 @@ namespace Henry
         public float bulletLift;
         [Header("子彈傷害"), Range(0, 100)]
         public float bulletDamage;
-        [Header("武器後座力"), Range(0, 2)]
+        [Header("子彈後座力"), Range(0, 50)]
         public float bulletRecoil;
         [Header("子彈冷卻"), Range(0, 1)]
         public float bulletCD;
