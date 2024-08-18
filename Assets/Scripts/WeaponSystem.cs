@@ -19,6 +19,8 @@ namespace Henry
         private int spawnBulletCount = 1;
         [SerializeField, Header("生成子彈左右位移"), Range(0, 5)]
         private int spawnBulletXOffset;
+        [SerializeField, Header("子彈圖層編號"), Tooltip("玩家子彈是 8 號，敵人子彈是 9 號")]
+        private int bulletLayerIndex;
 
         protected int bulletCurrent;
         protected int bulletTotal;
@@ -92,6 +94,8 @@ namespace Henry
                 float yFloat = Random.Range(-dataWeapon.bulletRecoil, dataWeapon.bulletRecoil);
                 // 獲得生成子彈的 2D 剛體 並添加推力 往子彈生成位置前方 (X軸) 發射
                 tempBullet.GetComponent<Rigidbody2D>().AddForce(spawnBulletPoint.right * dataWeapon.bulletSpeed + Vector3.up * yFloat);
+                // 指定子彈圖層
+                tempBullet.layer = bulletLayerIndex;
             }
             
         }

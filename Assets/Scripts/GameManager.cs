@@ -9,6 +9,6 @@ namespace Henry
     {
         // const 常數：不會變得值
         // 存取方法：腳本名稱.常數名稱
-        public const string playerName = "玩家_伊莉莎白";
+        public const string playerName = "伊莉莎白";
     }
 }

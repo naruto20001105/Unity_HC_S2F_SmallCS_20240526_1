@@ -22,9 +22,9 @@ namespace Henry
         [SerializeField, Header("爬梯區域圖層")]
         private LayerMask laddersLayer = 1 << 3;
 
-        private Rigidbody2D rig;
-        private Animator ani;
-        private string parMove = "移動數值";
+        protected Rigidbody2D rig;
+        protected Animator ani;
+        protected string parMove = "移動數值";
         #endregion
 
         #region 事件
