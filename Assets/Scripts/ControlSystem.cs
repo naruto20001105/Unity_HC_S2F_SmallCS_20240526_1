@@ -29,7 +29,7 @@ namespace Henry
 
         #region 事件
         // ODG 繪製圖示事件，在編輯器內繪製圖提示圖示
-        private void OnDrawGizmos()
+        protected virtual void OnDrawGizmos()
         {
             //決定圖示顏色
             Gizmos.color = ladderColor;
@@ -38,37 +38,34 @@ namespace Henry
             Gizmos.DrawCube(transform.position + ladderOffset, ladderSize);
         }
 
-        private void Awake()
+        protected virtual void Awake()
         {
             //獲得此物件身上的 2D 剛體並存放到變數 rig內
             rig = GetComponent<Rigidbody2D>();
             ani = GetComponent<Animator>();
         }
        
-        private void Update()
+        protected virtual void Update()
         {
             // 呼叫自訂方法移動
-            Move();
-            Ladder();
-        } 
+            // Move();
+            // Ladder();
+        }
         #endregion
 
         #region 方法
-        private void Move()
+        protected void Move(float move)
         {
-            // 獲得玩家的水平按鍵：A、D與左右
-            // 玩家按下左 -1，右 +1，沒按 0
-            float h = Input.GetAxis("Horizontal");
+
             // 剛體的加速度 = 玩家水平按鍵 * 移動速度，Y 軸是原本的重力
-            rig.velocity = new Vector2(h * movespeed, rig.velocity.y);
+            rig.velocity = new Vector2(move * movespeed, rig.velocity.y);
             // 對 h 取絕對值
-            h = Mathf.Abs(h);
-            print($"取絕對值後的 h 數值 {h}");
-            // 設定浮點數參數 為 h
-            ani.SetFloat(parMove, h);
+            move = Mathf.Abs(move);
+            // 設定浮點數參數 為 move
+            ani.SetFloat(parMove, move);
         }
 
-        private void Ladder()
+        protected void Ladder(float move)
         {
             // 2D 物理.覆蓋立體物(座標，尺寸，角度，圖層)
             Collider2D hit = Physics2D.OverlapBox(transform.position + ladderOffset,
@@ -76,9 +73,11 @@ namespace Henry
 
             // 如果 hit 是空的 就不執行下面的程式 (跳出)
             if (hit == null) return;
+
             // 如果 玩家 水平值絕對值 小於 0.2 就 跳出
-            float h = Input.GetAxis("Horizontal");
-            if (Mathf.Abs(h) < 0.2f) return;
+            // float h = Input.GetAxis("Horizontal");
+
+            if (Mathf.Abs(move) < 0.2f) return;
 
             rig.velocity = new Vector2(rig.velocity.x, ladderspeed);
         } 
