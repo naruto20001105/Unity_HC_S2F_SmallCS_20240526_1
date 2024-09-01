@@ -7,6 +7,11 @@ namespace Henry
     /// </summary>
     public class Bullet : MonoBehaviour
     {
+        /// <summary>
+        /// 子彈的傷害
+        /// </summary>
+        public float bulletDamage => dataWeapon.bulletDamage;
+
         [SerializeField, Header("武器資料")]
         private Dataweapon dataWeapon;
 

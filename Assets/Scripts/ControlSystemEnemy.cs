@@ -2,9 +2,14 @@
 
 namespace Henry
 {
-　　/// <summary>
-  　/// 控制系統：敵人 
-  　/// </summary>
+    public enum WeaponType
+    {
+        Pistol, MachineGun, ShotGun, Sniper
+    }
+
+    /// <summary>
+    　/// 控制系統：敵人 
+    　/// </summary>
     public class ControlSystemEnemy : ControlSystem
     {
         /// <summary>
@@ -14,10 +19,8 @@ namespace Henry
 
         // 定義列舉
         // 列舉自帶有編號從零開始，手槍0、步槍1、散彈槍2、狙擊槍3
-        private enum WeaponType
-        {
-            Pistol, MachineGun, ShotGun, Sniper
-        }
+
+
 
         [SerializeField, Header("敵人武器")]
         private WeaponType weaponType;
@@ -32,7 +35,7 @@ namespace Henry
         [SerializeField]
         private LayerMask checkPlayerLayer = 1 << 3 | 1 << 6;
 
-　　　　private Transform weaponFirePoint;
+        private Transform weaponFirePoint;
         private Transform player;
 
         protected override void OnDrawGizmos()
@@ -63,6 +66,8 @@ namespace Henry
 
         protected override void Update()
         {
+            // 如果 準心 是空的 就 跳出
+            if (player == null) return;
             base.Update();
 
             // 如果射線打到玩家就停止

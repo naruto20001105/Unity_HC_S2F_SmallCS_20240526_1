@@ -17,9 +17,13 @@ namespace Henry
 
         protected virtual void Update()
         {
+           // 如果 準心 是空的 就 跳出
+           if (crossHair == null) return;
+
            Rotate();
            Flip();
         }
+
         private void Rotate()
         {
             // 武器前方的軸 指定為 準心與武器的向量
