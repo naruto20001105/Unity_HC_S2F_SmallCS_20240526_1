@@ -22,3 +22,5 @@ MonoBehaviour:
   bulletCD: 0.01
   magazineCD: 0.5
   bulletPrefab: {fileID: 2915995427668037428, guid: 9c188be5295b55942b1d31224ebd5b24, type: 3}
+  buyMagazineKey: 0
+  soundFire: {fileID: 8300000, guid: 3e16895cb1d5d024aad60e1bf337a0e6, type: 3}

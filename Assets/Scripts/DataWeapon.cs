@@ -7,7 +7,7 @@ namespace Henry
 
     // 建立素材自定義菜單 menuName = "主菜單/子菜單"
     [CreateAssetMenu(menuName = "Henry/Weapon")]
-    public class Dataweapon : ScriptableObject
+    public class DataWeapon : ScriptableObject
     {
         [Header("武器名稱")]
         public string weaponName;
@@ -29,5 +29,9 @@ namespace Henry
         public float magazineCD;
         [Header("子彈預製物")]
         public GameObject bulletPrefab;
+        [Header("購買彈匣按鍵")]
+        public KeyCode buyMagazineKey;
+        [Header("開槍音效")]
+        public AudioClip soundFire;
     }
 }

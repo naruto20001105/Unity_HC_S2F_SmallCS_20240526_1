@@ -38,7 +38,8 @@ namespace Henry
         private void Damage (float damage)
         {
             hp -= damage;
-            // 更新血條圖片填滿長度
+            // 音效管理器單例 撥放音效(受傷音效)
+            SoundManager.instance.PlaySound(SoundType.Hit);
             image.fillAmount = hp / hpMax;
             if (hp <= 0) Dead();
         }
@@ -46,6 +47,7 @@ namespace Henry
         protected virtual void Dead()
         {
             // print("<color=#f31>死亡</color>");
+            SoundManager.instance.PlaySound(SoundType.Dead);
             GameObject temp =Instantiate(explosion, transform.position, Quaternion.identity);
             Destroy(temp, 1);
             Destroy(gameObject);

@@ -8,8 +8,8 @@ namespace Henry
     }
 
     /// <summary>
-    　/// 控制系統：敵人 
-    　/// </summary>
+    /// 控制系統：敵人 
+    /// </summary>
     public class ControlSystemEnemy : ControlSystem
     {
         /// <summary>
@@ -55,13 +55,7 @@ namespace Henry
             base.Awake();
             player = GameObject.Find(GameManager.playerName).transform;
 
-            // 隱藏非選取武器，顯示選取的武器
-            for (int i = 0; i < weapons.Length; i++)
-            {
-                weapons[i].SetActive(i == (int)weaponType);
-            }
-            // 獲得顯示武器的子彈生成位置
-            weaponFirePoint = weapons[(int)weaponType].transform.Find("子彈生成位置");
+            
         }
 
         protected override void Update()
@@ -91,6 +85,23 @@ namespace Henry
             if (hit.collider == null) return false;
             // 如果碰到物件的名稱 等於 玩家的名稱 就傳回 ture
             return hit.collider.name.Equals(GameManager.playerName);
+        }
+
+        /// <summary>
+        /// 設定武器類型
+        /// </summary>
+        /// <param name="_weaponType">武器類型</param>
+        public void SetWaponType(WeaponType _weaponType)
+        {
+            weaponType = _weaponType;
+
+            // 隱藏非選取武器，顯示選取的武器
+            for (int i = 0; i < weapons.Length; i++)
+            {
+                weapons[i].SetActive(i == (int)weaponType);
+            }
+            // 獲得顯示武器的子彈生成位置
+            weaponFirePoint = weapons[(int)weaponType].transform.Find("子彈生成位置");
         }
     }
 }

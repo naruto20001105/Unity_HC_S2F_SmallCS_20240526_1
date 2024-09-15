@@ -12,6 +12,7 @@ namespace Henry
         private GameObject prefabCanvasHp;
 
         private GameObject temp;
+        private bool isDead;
 
         private void Awake()
         {
@@ -26,6 +27,12 @@ namespace Henry
         protected override void Dead()
         {
             base.Dead();
+
+            // 如果死亡就跳出 (避免重複更新金幣)
+            if (isDead) return;
+            // 已經死亡
+            isDead = true;
+
             // 使用單例模式
             // 腳本名稱.實體.公開成員
             // 請 GM 更新擊殺數與金幣

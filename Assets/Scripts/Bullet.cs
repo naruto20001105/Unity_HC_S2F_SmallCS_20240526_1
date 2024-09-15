@@ -13,7 +13,7 @@ namespace Henry
         public float bulletDamage => dataWeapon.bulletDamage;
 
         [SerializeField, Header("武器資料")]
-        private Dataweapon dataWeapon;
+        private DataWeapon dataWeapon;
 
         private void Awake()
         {

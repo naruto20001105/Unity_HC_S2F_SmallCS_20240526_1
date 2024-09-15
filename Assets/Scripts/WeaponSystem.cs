@@ -12,7 +12,7 @@ namespace Henry
     public class WeaponSystem : MonoBehaviour
     {
         [SerializeField, Header("武器資料")]
-        protected Dataweapon dataWeapon;
+        protected DataWeapon dataWeapon;
         [SerializeField, Header("子彈生成位置")]
         private Transform spawnBulletPoint;
         [SerializeField, Header("生成子彈數量"), Range(1, 20)]
@@ -26,7 +26,7 @@ namespace Henry
         protected int bulletTotal;
         protected int magazineCount;
         // 能不能開槍，預設值為 true 代表一開始可以開槍
-        private bool canFire = true;
+        protected bool canFire = true;
         // 是否再換彈匣
         private bool isReload;
 
@@ -69,10 +69,15 @@ namespace Henry
             // 如果 不能開槍 就 跳出
             if (!canFire) return;
             // 如果 目前子彈 <= 0 就 跳出
-            if (bulletCurrent <= 0) return;
+            if (bulletCurrent <= 0)
+            {
+                if (fire) SoundManager.instance.PlaySound(SoundType.Empty, 0.5f, 0.6f);
+                return;
+            }
             // 如果 按下左鍵 就 生成子彈
             if (fire)
             {
+                SoundManager.instance.PlaySound(dataWeapon.soundFire);
                 SpawnBullet();
                 // 扣一顆子彈
                 bulletCurrent--;
@@ -123,6 +128,7 @@ namespace Henry
 
             if (reload)
             {
+                SoundManager.instance.PlaySound(SoundType.Reload, 1, 1.3f);
                 StartCoroutine(ReloadHandle());
             }
         }
