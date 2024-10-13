@@ -55,7 +55,7 @@ namespace Henry
         {
             textkillCount = GameObject.Find("擊殺數").GetComponent<TMP_Text>();
             textCoin = GameObject.Find("金錢數").GetComponent<TMP_Text>();
-            textDistance = GameObject.Find("文字行走距離").GetComponent<TMP_Text>();
+            textDistance = GameObject.Find("移動距離").GetComponent<TMP_Text>();
             groupFinal = GameObject.Find("結束畫面組").GetComponent<CanvasGroup>();
             player = GameObject.Find(playerName).transform;
             originalX = player.position.x;
